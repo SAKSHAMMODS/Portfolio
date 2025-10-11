@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saksham Bhor - Digital Marketing Portfolio</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Color Palette: Deep Navy (#0E2A47), Electric Blue (#007BFF), Soft Gray (#EAEAEA), Accent Orange (#FF8C00) */
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; 
+            color: #333;
+        }
+
+        header {
+            background: #0E2A47;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5em;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.3em;
+            font-weight: 400;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        section {
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        /* Delaying the section animations */
+        #contact { animation-delay: 0.3s; }
+        #summary { animation-delay: 0.6s; }
+        #education { animation-delay: 0.9s; }
+        #projects { animation-delay: 1.2s; }
+
+        h2 {
+            color: #0E2A47;
+            border-bottom: 3px solid #007BFF; /* Used blue for a stronger line */
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 2em;
+            font-weight: 700;
+        }
+        
+        h3 {
+             color: #007BFF; /* Blue for project titles */
+             font-size: 1.4em;
+             margin-bottom: 10px;
+        }
+
+        a {
+            color: #FF8C00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #CC7000;
+            text-decoration: underline;
+        }
+        
+        /* Contact links/icons styling */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 1.05em;
+        }
+
+        .info-grid p {
+            margin: 0;
+            padding: 15px;
+            background-color: #EAEAEA; /* Slightly darker background for better separation */
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-grid a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px; 
+            font-weight: 600;
+        }
+        
+        .info-grid a i {
+            font-size: 1.3em;
+            color: #0E2A47; /* Darker icon color */
+        }
+
+        /* Project Achievements Styling */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .achievement {
+            padding: 25px;
+            border-left: 6px solid #FF8C00; /* Orange border accent */
+            background-color: #fff;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+        }
+        
+        .achievement:hover {
+            transform: translateY(-5px) scale(1.01); /* Enhanced lift effect */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1em;
+        }
+        
+        /* Custom list style checkmark */
+        ul li::before {
+            content: '\f00c'; /* Font Awesome check icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #007BFF;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        #summary p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            padding: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0E2A47;
+            color: #fff;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Saksham Bhor</h1>
+        <p>Information Technology Student & Digital Content Strategist</p>
+    </header>
+    
+    <div class="container">
+        <section id="contact">
+            <h2>Contact & Links</h2>
+            <div class="info-grid">
+                <p><strong>Phone:</strong> 7666522907</p>
+                <p><strong>Email:</strong> <a href="mailto:sakshambhor@gmail.com">sakshambhor@gmail.com</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/saksham-bhor-36b13a32a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a></p>
+                <p><strong>Telegram:</strong> <a href="https://t.me/Loot_Wala_Deal" target="_blank"><i class="fab fa-telegram-plane"></i> Loot Wala Deal (8K+ Members)</a></p>
+                <p><strong>Instagram:</strong> <a href="https://www.instagram.com/s.power_editz?utm_source=qr&igsh=MTI2ZGRpZjIzem90Yw==" target="_blank"><i class="fab fa-instagram"></i> s.power_editz</a></p>
+            </div>
+        </section>
+
+        <section id="summary">
+            <h2>Professional Summary</h2>
+            <p>Ambitious and data-driven Information Technology student (Age 19) with demonstrated expertise in **community building** and **organic growth** across digital platforms. Proven ability to create and execute effective content strategies, translating technical knowledge into tangible marketing results.</p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <p><strong>BE in Information Technology</strong></p>
+            <p>D.Y. Patil Institute of Technology, Pimpri</p>
+        </section>
+
+        <section id="projects">
+            <h2>Digital Marketing Projects & Achievements</h2>
+            <div class="projects-grid">
+                <div class="achievement">
+                    <h3>Telegram Channel Growth: Loot Wala Deal</h3>
+                    <ul>
+                        <li>Launched and managed a dedicated Telegram deals channel, successfully achieving **8,000+ organic members**.</li>
+                        <li>Executed a **content curation strategy** focused on high-value, time-sensitive deals, driving rapid community growth and engagement.</li>
+                        <li>**Skills Demonstrated:** Community Building, Content Curation, Rapid Organic Growth, Audience Segmentation.</li>
+                    </ul>
+                </div>
+                
+                <div class="achievement">
+                    <h3>Instagram Content Strategy: s.power\_editz</h3>
+                    <ul>
+                        <li>Developed and implemented a **personal brand content strategy** across Instagram (Reels/Stories) to engage a target demographic.</li>
+                        <li>Focused on increasing **visibility and reach** through effective platform utilization and audience targeting.</li>
+                        <li>**Skills Demonstrated:** Content Strategy, Personal Branding, Platform Proficiency, Visual Marketing.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; Saksham Bhor Portfolio | Built with HTML & CSS | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
