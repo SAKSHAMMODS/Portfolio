@@ -343,7 +343,6 @@
         window.currentUserId = null;
         document.getElementById('auth-status-btn').textContent = 'CONFIG MISSING';
         document.getElementById('user-id-display').textContent = 'User ID: N/A';
-        // Do not call showView('auth') here, let onAuthStateChanged handle the initial view.
     }
     
     // Make these globally accessible to the main script
@@ -366,8 +365,6 @@
     };
 
     // 2. Authentication State Handler
-    // This handler will only run if the Firebase app initialized successfully.
-    // If config was missing, the logic below will handle it based on isFirebaseReady.
     if (window.isFirebaseReady && window.auth) {
          onAuthStateChanged(auth, async (user) => {
             
@@ -559,13 +556,27 @@
     window.renderProducts = (products) => {
         allProducts = products; // Cache for details lookup
         const listContainer = document.getElementById('product-list');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const noProductsMessage = document.getElementById('no-products');
+
+        // Check if the list container is found
+        if (!listContainer) return; 
+
         listContainer.innerHTML = '';
-        document.getElementById('loading-indicator').classList.add('hidden');
+        
+        // Defensive checks for indicators before manipulating classList
+        if (loadingIndicator) {
+            loadingIndicator.classList.add('hidden');
+        }
         
         if (products.length === 0) {
-            document.getElementById('no-products').classList.remove('hidden');
+            if (noProductsMessage) {
+                noProductsMessage.classList.remove('hidden');
+            }
         } else {
-            document.getElementById('no-products').classList.add('hidden');
+            if (noProductsMessage) {
+                noProductsMessage.classList.add('hidden');
+            }
         }
 
         products.forEach(product => {
