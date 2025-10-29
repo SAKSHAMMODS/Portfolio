@@ -3,252 +3,815 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saksham Bhor - Digital Marketing Portfolio</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <title>HARITHA - Agricultural Exchange</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Color Palette: Deep Navy (#0E2A47), Electric Blue (#007BFF), Soft Gray (#EAEAEA), Accent Orange (#FF8C00) */
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Custom CSS to define the theme colors */
+        :root {
+            --haritha-green: 140 50% 45%; /* Primary color theme */
+            --haritha-yellow: 40 90% 60%; /* Accent for pricing */
+            --haritha-blue: 210 80% 65%; /* Secondary for selling */
         }
+        .text-haritha-green { color: hsl(var(--haritha-green)); }
+        .bg-haritha-green { background-color: hsl(var(--haritha-green)); }
+        .hover\:bg-haritha-green-dark:hover { background-color: hsl(140 50% 35%); }
+        .bg-haritha-yellow { background-color: hsl(var(--haritha-yellow)); }
+        .bg-haritha-blue { background-color: hsl(var(--haritha-blue)); }
+        .shadow-haritha { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); }
+        
+        /* Ensure the body uses the Inter font and a smooth background */
+        body { font-family: 'Inter', sans-serif; background-color: #f8f8f8; }
+        
+        /* Custom scrollbar for better visual */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: hsl(var(--haritha-green)); border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #e0e0e0; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9; 
+        .price-tag {
+            background-color: hsl(var(--haritha-yellow));
             color: #333;
-        }
-
-        header {
-            background: #0E2A47;
-            color: #fff;
-            padding: 50px 20px;
-            text-align: center;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-out;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3.5em;
-            letter-spacing: 2px;
             font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        header p {
-            margin: 10px 0 0;
-            font-size: 1.3em;
-            font-weight: 400;
-        }
+        /* CARD COLORING FOR CLASSIFICATION */
+        .bg-card-organic { background-color: #f0fff4; border-left: 5px solid #34d399; } /* Light Green */
+        .bg-card-inorganic { background-color: #fffacd; border-left: 5px solid #fde047; } /* Light Yellow */
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
+        /* Star Rating CSS */
+        .rating-star { color: #ccc; cursor: pointer; font-size: 1.5rem; transition: color 0.2s; }
+        .rating-star.filled { color: gold; }
 
-        section {
-            padding: 30px;
-            background: #fff;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
-        }
-        /* Delaying the section animations */
-        #contact { animation-delay: 0.3s; }
-        #summary { animation-delay: 0.6s; }
-        #education { animation-delay: 0.9s; }
-        #projects { animation-delay: 1.2s; }
-
-        h2 {
-            color: #0E2A47;
-            border-bottom: 3px solid #007BFF; /* Used blue for a stronger line */
-            padding-bottom: 15px;
-            margin-top: 0;
-            font-size: 2em;
-            font-weight: 700;
-        }
-        
-        h3 {
-             color: #007BFF; /* Blue for project titles */
-             font-size: 1.4em;
-             margin-bottom: 10px;
-        }
-
-        a {
-            color: #FF8C00;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #CC7000;
-            text-decoration: underline;
-        }
-        
-        /* Contact links/icons styling */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            font-size: 1.05em;
-        }
-
-        .info-grid p {
-            margin: 0;
-            padding: 15px;
-            background-color: #EAEAEA; /* Slightly darker background for better separation */
-            border-radius: 8px;
-            font-weight: 500;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-        
-        .info-grid a {
-            display: inline-flex;
+        /* Auth View Centering */
+        .auth-center {
+            min-height: calc(100vh - 60px); /* Height minus header height */
+            display: flex;
             align-items: center;
-            gap: 10px; 
-            font-weight: 600;
-        }
-        
-        .info-grid a i {
-            font-size: 1.3em;
-            color: #0E2A47; /* Darker icon color */
-        }
-
-        /* Project Achievements Styling */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .achievement {
-            padding: 25px;
-            border-left: 6px solid #FF8C00; /* Orange border accent */
-            background-color: #fff;
-            border-radius: 8px;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
-        }
-        
-        .achievement:hover {
-            transform: translateY(-5px) scale(1.01); /* Enhanced lift effect */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-            margin-top: 15px;
-        }
-
-        ul li {
-            margin-bottom: 12px;
-            padding-left: 30px;
-            position: relative;
-            font-size: 1em;
-        }
-        
-        /* Custom list style checkmark */
-        ul li::before {
-            content: '\f00c'; /* Font Awesome check icon */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: #007BFF;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        
-        #summary p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            padding: 10px 0;
-        }
-
-        footer {
-            text-align: center;
+            justify-content: center;
+            flex-direction: column;
             padding: 20px;
-            background: #0E2A47;
-            color: #fff;
-            margin-top: 40px;
-            font-size: 0.9em;
         }
-
-        /* Responsive Adjustments */
-        @media (min-width: 768px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr); 
-            }
+        .auth-card {
+            max-width: 450px;
+            width: 100%;
         }
     </style>
 </head>
-<body>
-    <header>
-        <h1>Saksham Bhor</h1>
-        <p>Information Technology Student & Digital Content Strategist</p>
-    </header>
+<body class="min-h-screen antialiased">
+
+<!-- Header (Sticky) -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+        <!-- Logo (linked to Home/Buy view) -->
+        <div class="flex items-center space-x-2 cursor-pointer" onclick="showView(window.currentUserId ? 'buy' : 'auth')">
+            <!-- Leaf Icon using Lucide -->
+            <span class="text-haritha-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.6 4 18 3.5 19 3c1 1 1 2 2 4c0.5 1 0.5 3 0.5 5.2A7 7 0 0 1 11 20z"/><path d="M11 14c-1.5-1.4-2.5-3.1-2.8-5.3C6.3 7 4 6 4 6"/></svg>
+            </span>
+            <h1 class="text-2xl font-extrabold text-gray-800">HARITHA</h1>
+        </div>
+        
+        <!-- Navigation Links (Only shown if authenticated) -->
+        <nav id="main-nav" class="hidden md:flex space-x-6">
+            <button class="nav-link py-1 px-2 font-medium text-gray-600 hover:text-haritha-green transition-colors border-b-2 border-transparent" data-view="buy" onclick="showView('buy')">Buy</button>
+            <button class="nav-link py-1 px-2 font-medium text-gray-600 hover:text-haritha-green transition-colors border-b-2 border-transparent" data-view="sell" onclick="showView('sell')">Sell</button>
+            <button class="nav-link py-1 px-2 font-medium text-gray-600 hover:text-haritha-green transition-colors border-b-2 border-transparent" data-view="orders" onclick="showView('orders')">Order History</button>
+            <button class="nav-link py-1 px-2 font-medium text-gray-600 hover:text-haritha-green transition-colors border-b-2 border-transparent" data-view="profile" onclick="showView('profile')">Profile</button>
+            <button class="nav-link py-1 px-2 font-medium text-gray-600 hover:text-haritha-green transition-colors border-b-2 border-transparent" data-view="credits" onclick="showView('credits')">Credits</button>
+        </nav>
+
+        <!-- Auth Status & User ID -->
+        <div class="flex items-center space-x-4">
+            <button id="auth-status-btn" class="px-3 py-1 bg-gray-200 text-sm rounded-full font-medium transition-colors hover:bg-gray-300" onclick="showView('profile')">
+                Loading...
+            </button>
+            <div id="user-id-display" class="text-xs text-gray-500 hidden sm:block"></div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Area Wrapper -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     
-    <div class="container">
-        <section id="contact">
-            <h2>Contact & Links</h2>
-            <div class="info-grid">
-                <p><strong>Phone:</strong> 7666522907</p>
-                <p><strong>Email:</strong> <a href="mailto:sakshambhor@gmail.com">sakshambhor@gmail.com</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/saksham-bhor-36b13a32a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a></p>
-                <p><strong>Telegram:</strong> <a href="https://t.me/Loot_Wala_Deal" target="_blank"><i class="fab fa-telegram-plane"></i> Loot Wala Deal (8K+ Members)</a></p>
-                <p><strong>Instagram:</strong> <a href="https://www.instagram.com/s.power_editz?utm_source=qr&igsh=MTI2ZGRpZjIzem90Yw==" target="_blank"><i class="fab fa-instagram"></i> s.power_editz</a></p>
+    <!-- 0. Authentication View -->
+    <div id="view-auth" class="auth-center hidden">
+        <div class="auth-card p-8 bg-white rounded-xl shadow-haritha space-y-8">
+            <h2 class="text-3xl font-bold text-gray-700 text-center">Welcome to HARITHA</h2>
+            
+            <!-- Login/Sign Up Switch -->
+            <div class="flex border-b border-gray-200">
+                <button id="login-tab" class="flex-1 py-2 font-semibold text-center border-b-2 border-haritha-green text-haritha-green" onclick="switchAuthTab('login')">Login</button>
+                <button id="signup-tab" class="flex-1 py-2 font-semibold text-center text-gray-500" onclick="switchAuthTab('signup')">Register</button>
             </div>
-        </section>
 
-        <section id="summary">
-            <h2>Professional Summary</h2>
-            <p>Ambitious and data-driven Information Technology student (Age 19) with demonstrated expertise in **community building** and **organic growth** across digital platforms. Proven ability to create and execute effective content strategies, translating technical knowledge into tangible marketing results.</p>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-            <p><strong>BE in Information Technology</strong></p>
-            <p>D.Y. Patil Institute of Technology, Pimpri</p>
-        </section>
-
-        <section id="projects">
-            <h2>Digital Marketing Projects & Achievements</h2>
-            <div class="projects-grid">
-                <div class="achievement">
-                    <h3>Telegram Channel Growth: Loot Wala Deal</h3>
-                    <ul>
-                        <li>Launched and managed a dedicated Telegram deals channel, successfully achieving **8,000+ organic members**.</li>
-                        <li>Executed a **content curation strategy** focused on high-value, time-sensitive deals, driving rapid community growth and engagement.</li>
-                        <li>**Skills Demonstrated:** Community Building, Content Curation, Rapid Organic Growth, Audience Segmentation.</li>
-                    </ul>
+            <!-- Login Form -->
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="login-email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
                 </div>
-                
-                <div class="achievement">
-                    <h3>Instagram Content Strategy: s.power\_editz</h3>
-                    <ul>
-                        <li>Developed and implemented a **personal brand content strategy** across Instagram (Reels/Stories) to engage a target demographic.</li>
-                        <li>Focused on increasing **visibility and reach** through effective platform utilization and audience targeting.</li>
-                        <li>**Skills Demonstrated:** Content Strategy, Personal Branding, Platform Proficiency, Visual Marketing.</li>
-                    </ul>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="login-password" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
                 </div>
-            </div>
-        </section>
+                <button type="submit" class="w-full py-3 px-4 rounded-lg bg-haritha-green text-white font-bold text-lg hover:bg-haritha-green-dark transition-colors">
+                    Login
+                </button>
+            </form>
+
+            <!-- Registration Form -->
+            <form id="signup-form" class="space-y-4 hidden">
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+                        <label for="signup-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="signup-name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+                    </div>
+                    <div class="flex-1">
+                        <label for="signup-contact" class="block text-sm font-medium text-gray-700">Contact No.</label>
+                        <input type="tel" id="signup-contact" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+                    </div>
+                </div>
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signup-email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="signup-password" required minlength="6" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border">
+                </div>
+                <div>
+                    <label for="signup-address" class="block text-sm font-medium text-gray-700">Address</label>
+                    <textarea id="signup-address" rows="2" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-3 border"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 px-4 rounded-lg bg-haritha-green text-white font-bold text-lg hover:bg-haritha-green-dark transition-colors">
+                    Register
+                </button>
+            </form>
+
+            <div id="auth-message" class="mt-4 p-3 rounded-md hidden text-center"></div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; Saksham Bhor Portfolio | Built with HTML & CSS | All Rights Reserved</p>
-    </footer>
+    <!-- 1. Buy View (Listings) -->
+    <div id="view-buy" class="space-y-6 hidden">
+        <h2 class="text-3xl font-bold text-gray-700">Available Products</h2>
+        <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="text-center p-8 bg-white rounded-xl shadow-haritha col-span-full" id="loading-indicator">
+                <p class="text-lg text-gray-500">Loading products from Firebase Firestore...</p>
+            </div>
+        </div>
+        <div class="text-center p-8 bg-white rounded-xl shadow-haritha col-span-full hidden" id="no-products">
+            <p class="text-lg text-gray-500">No products posted yet. Be the first to use the "Sell" tab!</p>
+        </div>
+    </div>
+
+    <!-- 2. Sell View (Form) -->
+    <div id="view-sell" class="hidden max-w-xl mx-auto p-8 bg-white rounded-xl shadow-haritha">
+        <h2 class="text-3xl font-bold text-gray-700 mb-6">List a New Pesticide/Product</h2>
+        <form id="new-product-form" class="space-y-6">
+            <!-- Product Name -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
+                <input type="text" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border">
+            </div>
+
+            <!-- Image URL (Simulated Upload) -->
+            <div>
+                <label for="imageUrl" class="block text-sm font-medium text-gray-700">Product Image URL (Optional)</label>
+                <input type="url" id="imageUrl" placeholder="e.g., https://placehold.co/400x300/10b981/ffffff?text=Product+Image" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border">
+            </div>
+
+            <!-- Price & Quantity -->
+            <div class="flex space-x-4">
+                <div class="flex-1">
+                    <label for="price" class="block text-sm font-medium text-gray-700">Price (₹)</label>
+                    <input type="number" id="price" required min="1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border">
+                </div>
+                <div class="flex-1">
+                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity (Units/Litres)</label>
+                    <input type="number" id="quantity" required min="1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border">
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Description (e.g., Use, Composition, Safety)</label>
+                <textarea id="description" rows="4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border"></textarea>
+            </div>
+
+            <!-- Product Type -->
+            <div class="flex space-x-4">
+                <div class="flex-1">
+                    <label for="type" class="block text-sm font-medium text-gray-700">Product Type</label>
+                    <select id="type" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border">
+                        <option value="Pesticide">Pesticide</option>
+                        <option value="Fertilizer">Fertilizer</option>
+                        <option value="Seed">Seed/Sapling</option>
+                        <option value="Other">Other Agri Product</option>
+                    </select>
+                </div>
+                <!-- Classification (NEW) -->
+                <div class="flex-1">
+                    <label for="classification" class="block text-sm font-medium text-gray-700">Classification</label>
+                    <select id="classification" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border">
+                        <option value="Organic">Organic (Light Green)</option>
+                        <option value="Inorganic">Inorganic (Yellow)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 px-4 rounded-lg bg-haritha-green text-white font-bold text-lg hover:bg-haritha-green-dark transition-colors">
+                Post Product
+            </button>
+            <div id="form-message" class="mt-4 p-3 rounded-md hidden"></div>
+        </form>
+    </div>
+
+    <!-- 3. Orders View (Placeholder) -->
+    <div id="view-orders" class="hidden max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-haritha">
+        <h2 class="text-3xl font-bold text-gray-700 mb-6">Order History & Sales (Simulated)</h2>
+        <p class="text-gray-600">This section would show a list of your past purchases and products you have sold, fetched from your private Firestore collection.</p>
+        <div class="mt-4 p-4 border rounded-md bg-gray-50">
+            <h3 class="font-semibold text-lg">My Purchases</h3>
+            <p class="text-sm text-gray-500">No purchase records found in this simulation.</p>
+            <h3 class="font-semibold text-lg mt-4">My Sales (Products I Posted)</h3>
+            <p class="text-sm text-gray-500">No sales records found in this simulation.</p>
+        </div>
+    </div>
+
+    <!-- 4. Profile View (Placeholder) -->
+    <div id="view-profile" class="hidden max-w-xl mx-auto p-8 bg-white rounded-xl shadow-haritha">
+        <h2 class="text-3xl font-bold text-gray-700 mb-6">User Profile & Authentication</h2>
+        <p class="text-lg font-medium text-haritha-green mb-4" id="profile-user-id">Loading User ID...</p>
+        <div class="space-y-4">
+            <p class="text-gray-600">You are currently signed in. Your profile details (Name, Address, Contact) are stored in Firestore.</p>
+            
+            <button onclick="logout()" class="w-full py-3 px-4 rounded-lg bg-red-500 text-white font-bold text-lg hover:bg-red-600 transition-colors">
+                Log Out
+            </button>
+        </div>
+    </div>
+
+    <!-- 5. Credits View -->
+    <div id="view-credits" class="hidden max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-haritha">
+        <h2 class="text-3xl font-bold text-haritha-green mb-6">HARITHA Project Credits</h2>
+        <h3 class="text-xl font-semibold text-gray-700 mb-4">Helping Agriculture Reach Innovative Technology Access</h3>
+        
+        <div class="space-y-6">
+            <div>
+                <h4 class="text-2xl font-bold text-gray-800 mb-2 border-b pb-1">Team Members</h4>
+                <ul class="space-y-2">
+                    <li class="p-3 bg-gray-50 rounded-lg flex justify-between items-center shadow-sm">
+                        <span>Vedant Dhiraj Karande</span>
+                        <a href="mailto:vedantkarande2314@gmail.com" class="text-sm text-haritha-blue hover:underline">Contact via Email</a>
+                    </li>
+                    <li class="p-3 bg-gray-50 rounded-lg flex justify-between items-center shadow-sm">
+                        <span>MANISH ANIL NAIR</span>
+                        <a href="mailto:nairmanish108@gmail.com" class="text-sm text-haritha-blue hover:underline">Contact via Email</a>
+                    </li>
+                    <li class="p-3 bg-gray-50 rounded-lg flex justify-between items-center shadow-sm">
+                        <span>Daivik Bhaskar Pawar</span>
+                        <a href="mailto:daivikbhaskarpawara@gmail.com" class="text-sm text-haritha-blue hover:underline">Contact via Email</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-2xl font-bold text-gray-800 mb-2 border-b pb-1">Team Guide</h4>
+                <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center shadow-sm">
+                    <span>Prof. Shital Gajbhiye</span>
+                    <a href="tel:+918097575544" class="text-sm text-haritha-blue hover:underline">Contact via Phone</a>
+                </div>
+            </div>
+        </div>
+        <p class="mt-6 text-sm text-gray-500 italic">Note: Contact details are hidden via links to maintain visual organization and redirect to external contact methods.</p>
+    </div>
+
+</div>
+
+<!-- Product Detail Modal (Hidden by default) -->
+<div id="product-detail-modal" class="fixed inset-0 z-[100] bg-black bg-opacity-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative">
+        <button onclick="document.getElementById('product-detail-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-500 hover:text-red-500">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+        <div id="modal-content">
+            <!-- Details will be dynamically injected here -->
+        </div>
+    </div>
+</div>
+
+
+<!-- Firebase Modules -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, addDoc, setDoc, onSnapshot, collection, query, serverTimestamp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // IMPORTANT: Firebase Configuration Setup for Deployment
+    
+    // <<< PASTE YOUR CONFIG JSON STRING HERE >>>
+    const rawFirebaseConfig = '{"apiKey": "AIzaSyC1CHwqmD56P9a0fXvekCh1QwwYgR1UBF4","authDomain": "haritanew-aacd3.firebaseapp.com","projectId": "haritanew-aacd3","storageBucket": "haritanew-aacd3.firebasestorage.app","messagingSenderId": "169742912511","appId": "1:169742912511:web:2a207a0697ade6ce6fb5ca","measurementId": "G-DB1THL6YFS"}'; 
+    // ^^^ CONFIG SUCCESSFULLY ATTACHED ^^^
+
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-haritha-app-id';
+    const firebaseConfig = JSON.parse(rawFirebaseConfig); 
+    
+    // Set Firestore log level (optional, but useful for debugging)
+    setLogLevel('Debug');
+
+    // 1. Firebase Initialization
+    let app, auth, db, currentUserId;
+    let isConfigValid = Object.keys(firebaseConfig).length > 0 && firebaseConfig.apiKey; // Check for non-empty config
+
+    if (isConfigValid) {
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        window.isFirebaseReady = true;
+    } else {
+        console.error("Firebase configuration is missing or empty. Please paste your config.");
+        // Fallback state if configuration is missing
+        window.isFirebaseReady = false;
+        window.auth = null;
+        window.db = null;
+        window.currentUserId = null;
+        document.getElementById('auth-status-btn').textContent = 'CONFIG MISSING';
+        document.getElementById('user-id-display').textContent = 'User ID: N/A';
+        // Do not call showView('auth') here, let onAuthStateChanged handle the initial view.
+    }
+    
+    // Make these globally accessible to the main script
+    window.db = db;
+    window.auth = auth;
+    window.appId = appId;
+    window.serverTimestamp = serverTimestamp;
+    window.signOut = signOut;
+    window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+    window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+    window.setDoc = setDoc;
+
+    // Helper for toast messages (since alert is forbidden)
+    window.showToast = (message, isSuccess = true, elementId = 'auth-message') => {
+        const messageDiv = document.getElementById(elementId); 
+        messageDiv.textContent = message;
+        messageDiv.className = `mt-4 p-3 rounded-md ${isSuccess ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`;
+        messageDiv.style.display = 'block';
+        setTimeout(() => messageDiv.style.display = 'none', 5000);
+    };
+
+    // 2. Authentication State Handler
+    // This handler will only run if the Firebase app initialized successfully.
+    // If config was missing, the logic below will handle it based on isFirebaseReady.
+    if (window.isFirebaseReady && window.auth) {
+         onAuthStateChanged(auth, async (user) => {
+            
+            // Hide navigation until user is confirmed signed in
+            document.getElementById('main-nav').classList.add('hidden');
+            document.getElementById('auth-status-btn').classList.remove('hidden');
+
+            if (user) {
+                currentUserId = user.uid;
+                document.getElementById('auth-status-btn').textContent = 'Signed In';
+                document.getElementById('auth-status-btn').className = 'px-3 py-1 bg-haritha-green text-white text-sm rounded-full font-medium';
+                document.getElementById('user-id-display').textContent = `User ID: ${currentUserId.substring(0, 8)}...`;
+                window.currentUserId = currentUserId;
+                
+                // Show main navigation
+                document.getElementById('main-nav').classList.remove('hidden');
+
+                // Start data listener and redirect to the buy view
+                window.startDataListener();
+                window.showView('buy');
+            } else {
+                currentUserId = null;
+                document.getElementById('auth-status-btn').textContent = 'Log In/Register';
+                document.getElementById('auth-status-btn').className = 'px-3 py-1 bg-gray-400 text-white text-sm rounded-full font-medium hover:bg-gray-500';
+                document.getElementById('user-id-display').textContent = 'User ID: N/A';
+                window.currentUserId = null;
+
+                // Clear products list and redirect to auth view
+                window.renderProducts([]);
+                document.getElementById('loading-indicator').classList.add('hidden');
+                window.showView('auth');
+            }
+        });
+    } else {
+        // If config was invalid, force the authentication view immediately
+        window.showToast('Configuration Error: Database connection failed.', false, 'auth-message');
+        document.getElementById('auth-status-btn').textContent = 'CONFIG ERROR';
+        window.showView('auth');
+    }
+
+</script>
+
+<script>
+    // 3. Application Logic (runs after Firebase is available via window scope)
+
+    let currentView = 'auth';
+    let allProducts = [];
+
+    /** Switches between the login and sign-up tabs. */
+    window.switchAuthTab = (tab) => {
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const loginTab = document.getElementById('login-tab');
+        const signupTab = document.getElementById('signup-tab');
+        
+        document.getElementById('auth-message').style.display = 'none';
+
+        if (tab === 'login') {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            loginTab.classList.add('border-haritha-green', 'text-haritha-green');
+            loginTab.classList.remove('text-gray-500');
+            signupTab.classList.remove('border-haritha-green', 'text-haritha-green');
+            signupTab.classList.add('text-gray-500');
+        } else {
+            signupForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+            signupTab.classList.add('border-haritha-green', 'text-haritha-green');
+            signupTab.classList.remove('text-gray-500');
+            loginTab.classList.remove('border-haritha-green', 'text-haritha-green');
+            loginTab.classList.add('text-gray-500');
+        }
+    }
+    
+    /** Handles the entire view switching logic. */
+    window.showView = (viewId) => {
+        currentView = viewId;
+        
+        // Ensure main content wrapper views are hidden
+        document.getElementById('view-auth').classList.add('hidden');
+        document.getElementById('view-buy').classList.add('hidden');
+        document.getElementById('view-sell').classList.add('hidden');
+        document.getElementById('view-orders').classList.add('hidden');
+        document.getElementById('view-profile').classList.add('hidden');
+        document.getElementById('view-credits').classList.add('hidden');
+
+        // Show the requested view
+        const activeView = document.getElementById(`view-${viewId}`);
+        if (activeView) {
+            activeView.classList.remove('hidden');
+        }
+
+        // Handle Active Navigation Link Styling (only if not on auth screen)
+        if (viewId !== 'auth') {
+             document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('text-haritha-green', 'border-b-2', 'border-haritha-green');
+                btn.classList.add('text-gray-600');
+                if (btn.getAttribute('data-view') === viewId) {
+                    btn.classList.add('text-haritha-green', 'border-b-2', 'border-haritha-green');
+                    btn.classList.remove('text-gray-600');
+                }
+            });
+        }
+    }
+
+    /** Handles Email/Password Registration. */
+    async function handleRegistration(event) {
+        event.preventDefault();
+        
+        if (!window.isFirebaseReady || !window.auth) {
+            window.showToast('Database connection failed. Check console for config errors.', false, 'auth-message');
+            return;
+        }
+
+        const name = document.getElementById('signup-name').value.trim();
+        const contact = document.getElementById('signup-contact').value.trim();
+        const email = document.getElementById('signup-email').value.trim();
+        const password = document.getElementById('signup-password').value;
+        const address = document.getElementById('signup-address').value.trim();
+
+        try {
+            // 1. Create user in Firebase Auth
+            const userCredential = await window.createUserWithEmailAndPassword(window.auth, email, password);
+            const user = userCredential.user;
+            
+            // 2. Save user metadata to Firestore
+            // Path: /artifacts/{appId}/public/data/users/{userId}
+            const userDocPath = `/artifacts/${window.appId}/public/data/users`;
+            await window.setDoc(doc(window.db, userDocPath, user.uid), {
+                name: name,
+                contact: contact,
+                email: email,
+                address: address,
+                createdAt: window.serverTimestamp(),
+            });
+
+            document.getElementById('signup-form').reset();
+            window.showToast('Registration successful! Redirecting...', true, 'auth-message');
+            // onAuthStateChanged handles the view change to 'buy'
+        } catch (error) {
+            console.error("Registration failed:", error);
+            let errorMessage = "Registration failed. Please check your email/password.";
+            if (error.code === 'auth/email-already-in-use') {
+                errorMessage = "This email is already registered. Try logging in.";
+            } else if (error.code === 'auth/weak-password') {
+                 errorMessage = "Password should be at least 6 characters.";
+            }
+            window.showToast(errorMessage, false, 'auth-message');
+        }
+    }
+    
+    /** Handles Email/Password Login. */
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        if (!window.isFirebaseReady || !window.auth) {
+            window.showToast('Database connection failed. Cannot log in.', false, 'auth-message');
+            return;
+        }
+        
+        const email = document.getElementById('login-email').value.trim();
+        const password = document.getElementById('login-password').value;
+
+        try {
+            await window.signInWithEmailAndPassword(window.auth, email, password);
+            document.getElementById('login-form').reset();
+            window.showToast('Login successful! Redirecting...', true, 'auth-message');
+            // onAuthStateChanged handles the view change to 'buy'
+        } catch (error) {
+            console.error("Login failed:", error);
+            window.showToast("Login failed. Check your email and password.", false, 'auth-message');
+        }
+    }
+
+    /** Logs the user out. */
+    window.logout = async () => {
+        try {
+            if (window.auth) {
+                await window.signOut(window.auth);
+                // onAuthStateChanged will handle the view change to 'auth'
+            }
+        } catch (error) {
+            console.error("Logout failed:", error);
+            window.showToast('Logout failed. Try again.', false, 'form-message');
+        }
+    };
+    
+    /** Renders the list of products from Firestore. */
+    window.renderProducts = (products) => {
+        allProducts = products; // Cache for details lookup
+        const listContainer = document.getElementById('product-list');
+        listContainer.innerHTML = '';
+        document.getElementById('loading-indicator').classList.add('hidden');
+        
+        if (products.length === 0) {
+            document.getElementById('no-products').classList.remove('hidden');
+        } else {
+            document.getElementById('no-products').classList.add('hidden');
+        }
+
+        products.forEach(product => {
+            
+            // Determine card styling based on classification
+            const classification = product.classification || 'Inorganic'; // Default if missing
+            const cardClass = classification === 'Organic' 
+                ? 'bg-card-organic' 
+                : 'bg-card-inorganic';
+
+            const card = document.createElement('div');
+            card.className = `product-card p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 border border-gray-100 ${cardClass}`;
+            
+            const isAvailable = product.quantity > 0;
+            const statusClass = isAvailable ? 'text-green-600' : 'text-red-500';
+            const imageUrl = product.imageUrl || `https://placehold.co/400x300/${classification === 'Organic' ? '34D399' : 'FDE047'}/000000?text=${product.name.replace(/\s/g, '+')}`;
+
+            // Lucide icons
+            const priceIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-indian-rupee-sign"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3m7-5v12"/></svg>';
+            const locationIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M12 21.7c-4.4-4-7-7.8-7-10.7A7 7 0 0 1 12 4a7 7 0 0 1 7 7c0 2.9-2.6 6.7-7 10.7z"/><circle cx="12" cy="11" r="3"/></svg>';
+
+
+            card.innerHTML = `
+                <img src="${imageUrl}" onerror="this.onerror=null;this.src='https://placehold.co/400x200/${classification === 'Organic' ? '34D399' : 'FDE047'}/000000?text=Image+Not+Found';" class="w-full h-32 object-cover rounded-md mb-4" alt="Product Image">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-xl font-bold text-gray-800 leading-tight">${product.name}</h3>
+                    <div class="price-tag flex items-center space-x-1">
+                        ${priceIcon}
+                        <span>${product.price}</span>
+                    </div>
+                </div>
+                
+                <div class="text-sm font-medium mb-2 ${classification === 'Organic' ? 'text-green-700' : 'text-yellow-700'}">
+                    Classification: ${classification}
+                </div>
+                <p class="text-sm text-gray-500 mb-4">${product.description.substring(0, 70)}...</p>
+                
+                <div class="space-y-2 text-sm text-gray-600">
+                    <p><strong>Available:</strong> <span class="${statusClass}">${product.quantity} units</span></p>
+                    <p class="flex items-center space-x-1">
+                        ${locationIcon} 
+                        <span>Posted by User: ${product.sellerId.substring(0, 8)}...</span>
+                    </p>
+                </div>
+
+                <button class="mt-4 w-full py-2 rounded-lg text-white font-semibold transition-colors bg-haritha-green hover:bg-haritha-green-dark"
+                        onclick="showProductDetails('${product.id}')">
+                    View Details & Reviews
+                </button>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+    
+    /** Displays the product detail modal with mock reviews. (No change) */
+    function showProductDetails(productId) {
+        const product = allProducts.find(p => p.id === productId);
+        if (!product) return;
+        
+        const classificationText = product.classification === 'Organic' 
+            ? '<span class="text-green-600 font-semibold">Organic (Eco-Friendly)</span>' 
+            : '<span class="text-yellow-700 font-semibold">Inorganic (Chemical-Based)</span>';
+
+        // Mock Review Data (since we don't store them in Firestore in this single file)
+        const mockReviews = [
+            { user: 'Farmer A', rating: 5, comment: 'Excellent product, cleared all the pests quickly!', date: '2024-05-10' },
+            { user: 'Farmer B', rating: 3, comment: 'It was okay, maybe slightly overpriced for the quantity.', date: '2024-05-15' },
+        ];
+        
+        let reviewsHtml = mockReviews.map(r => `
+            <div class="p-3 border-b border-gray-100 last:border-b-0">
+                <div class="flex items-center justify-between text-sm">
+                    <strong class="text-gray-800">${r.user}</strong>
+                    <span class="text-gray-500">${r.date}</span>
+                </div>
+                <div class="flex space-x-1 my-1">
+                    ${Array(r.rating).fill().map(() => `<span class="text-yellow-500">★</span>`).join('')}
+                    ${Array(5 - r.rating).fill().map(() => `<span class="text-gray-300">★</span>`).join('')}
+                </div>
+                <p class="text-gray-600 text-sm">${r.comment}</p>
+            </div>
+        `).join('');
+
+        const modalContent = document.getElementById('modal-content');
+        modalContent.innerHTML = `
+            <div class="md:flex md:space-x-6">
+                <div class="md:w-1/3">
+                    <img src="${product.imageUrl || `https://placehold.co/400x300/e0f2f1/000000?text=${product.type}`}" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x300/e0f2f1/000000?text=Image+Not+Found';" 
+                         class="w-full h-48 object-cover rounded-lg mb-4 shadow-md" alt="${product.name}">
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold text-gray-800">${product.name}</h2>
+                    <div class="flex items-center space-x-4 my-2">
+                        <span class="text-2xl font-bold text-haritha-green">₹${product.price}</span>
+                        <span class="text-sm font-medium text-gray-500">Available: ${product.quantity} units</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">Classification: ${classificationText}</p>
+                    <p class="text-gray-700 mb-4">${product.description}</p>
+                    
+                    <button class="w-full py-3 rounded-lg text-white font-semibold transition-colors 
+                                   ${product.quantity > 0 ? 'bg-haritha-blue hover:bg-blue-600' : 'bg-gray-400 cursor-not-allowed'}"
+                            ${product.quantity <= 0 ? 'disabled' : ''}
+                            onclick="console.log('User contacting seller ${product.sellerId} for ${product.name}'); document.getElementById('product-detail-modal').classList.add('hidden');">
+                        ${product.quantity > 0 ? 'Contact Seller' : 'Out of Stock'}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="mt-8 border-t pt-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Customer Reviews (${mockReviews.length})</h3>
+                <div class="space-y-3 mb-6 max-h-48 overflow-y-auto border p-3 rounded-lg bg-gray-50">
+                    ${reviewsHtml || '<p class="text-gray-500">No reviews yet. Be the first to rate this product!</p>'}
+                </div>
+                
+                <!-- Review Submission Form -->
+                <h4 class="text-xl font-semibold text-gray-700 mb-3">Submit Your Review</h4>
+                <form id="review-form" onsubmit="submitReview(event, '${productId}')" class="space-y-4">
+                    <div id="star-rating" data-rating="0">
+                        ${Array(5).fill().map((_, i) => 
+                            `<span class="rating-star" data-value="${i + 1}" onclick="setRating(${i + 1})">★</span>`
+                        ).join('')}
+                    </div>
+                    <input type="hidden" id="review-rating" required value="0">
+
+                    <textarea id="review-comment" rows="3" placeholder="Your comments..." required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-haritha-green focus:ring-haritha-green p-3 border"></textarea>
+                    
+                    <button type="submit" class="py-2 px-4 rounded-lg bg-haritha-green text-white font-semibold hover:bg-haritha-green-dark">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        `;
+
+        document.getElementById('product-detail-modal').classList.remove('hidden');
+    }
+    
+    // Rating helper functions (No change)
+    window.setRating = (rating) => {
+        document.getElementById('review-rating').value = rating;
+        document.querySelectorAll('#star-rating .rating-star').forEach(star => {
+            if (parseInt(star.dataset.value) <= rating) {
+                star.classList.add('filled');
+            } else {
+                star.classList.remove('filled');
+            }
+        });
+    }
+
+    window.submitReview = (event, productId) => {
+        event.preventDefault();
+        const rating = parseInt(document.getElementById('review-rating').value);
+        const comment = document.getElementById('review-comment').value;
+
+        if (rating === 0) {
+            console.error("Please select a star rating.");
+            return;
+        }
+
+        // Simulation of success and closing
+        console.log('Review submitted! (Simulated - No data saved to Firestore)');
+        document.getElementById('product-detail-modal').classList.add('hidden');
+    }
+    
+    /** Attaches the real-time listener to Firestore. */
+    window.startDataListener = () => {
+        if (!window.isFirebaseReady || !window.db) return;
+
+        const productsCollectionPath = `/artifacts/${window.appId}/public/data/products`;
+        const q = collection(window.db, productsCollectionPath);
+
+        // Real-time listener using onSnapshot
+        onSnapshot(q, (snapshot) => {
+            const products = [];
+            snapshot.forEach((doc) => {
+                products.push({ id: doc.id, ...doc.data() });
+            });
+            // Sort by latest (using the 'createdAt' timestamp field)
+            products.sort((a, b) => (b.createdAt?.toDate() || 0) - (a.createdAt?.toDate() || 0));
+            window.renderProducts(products);
+        }, (error) => {
+            console.error("Firestore Listener Error:", error);
+            document.getElementById('loading-indicator').innerHTML = '<p class="text-lg text-red-500">Error loading products. Check console.</p>';
+        });
+    }
+
+    /** Handles the product submission form. */
+    async function handleProductSubmit(event) {
+        event.preventDefault();
+        
+        if (!window.isFirebaseReady || !window.db || !window.currentUserId) {
+            window.showToast('Authentication not ready. Please log in.', false, 'form-message');
+            return;
+        }
+
+        const form = event.target;
+        const name = form.name.value.trim();
+        const imageUrl = form.imageUrl.value.trim();
+        const price = parseFloat(form.price.value);
+        const quantity = parseInt(form.quantity.value);
+        const description = form.description.value.trim();
+        const type = form.type.value;
+        const classification = form.classification.value; 
+
+        if (price <= 0 || quantity <= 0) {
+            window.showToast('Price and Quantity must be positive values.', false, 'form-message');
+            return;
+        }
+        
+        const newProduct = {
+            name,
+            imageUrl: imageUrl || null,
+            price,
+            quantity,
+            description,
+            type,
+            classification,
+            sellerId: window.currentUserId,
+            createdAt: serverTimestamp(),
+        };
+
+        try {
+            const productsCollectionPath = `/artifacts/${window.appId}/public/data/products`;
+            await addDoc(collection(window.db, productsCollectionPath), newProduct);
+            
+            form.reset();
+            window.showToast('Product posted successfully!', true, 'form-message');
+            window.showView('buy'); // Switch back to listing view
+        } catch (error) {
+            console.error("Error posting product:", error);
+            window.showToast(`Failed to post product: ${error.message}`, false, 'form-message');
+        }
+    }
+
+    // Attach form handlers on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+        // Set up form submission handlers
+        document.getElementById('new-product-form').addEventListener('submit', handleProductSubmit);
+        document.getElementById('signup-form').addEventListener('submit', handleRegistration);
+        document.getElementById('login-form').addEventListener('submit', handleLogin);
+        
+        // Initial state
+        window.switchAuthTab('login');
+    });
+
+</script>
 </body>
 </html>
