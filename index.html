@@ -316,11 +316,18 @@
     // IMPORTANT: Firebase Configuration Setup for Deployment
     
     // <<< PASTE YOUR CONFIG JSON STRING HERE >>>
+    // NOTE: The apiKey value is provided below, ensure it matches your Firebase Web API Key if deployed externally.
     const rawFirebaseConfig = '{"apiKey": "AIzaSyC1CHwqmD56P9a0fXvekCh1QwwYgR1UBF4","authDomain": "haritanew-aacd3.firebaseapp.com","projectId": "haritanew-aacd3","storageBucket": "haritanew-aacd3.firebasestorage.app","messagingSenderId": "169742912511","appId": "1:169742912511:web:2a207a0697ade6ce6fb5ca","measurementId": "G-DB1THL6YFS"}'; 
     // ^^^ CONFIG SUCCESSFULLY ATTACHED ^^^
 
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-haritha-app-id';
-    const firebaseConfig = JSON.parse(rawFirebaseConfig); 
+    let firebaseConfig;
+    try {
+        firebaseConfig = JSON.parse(rawFirebaseConfig);
+    } catch (e) {
+        console.error("Failed to parse Firebase configuration:", e);
+        firebaseConfig = {};
+    }
     
     // Set Firestore log level (optional, but useful for debugging)
     setLogLevel('Debug');
@@ -335,13 +342,12 @@
         auth = getAuth(app);
         window.isFirebaseReady = true;
     } else {
-        console.error("Firebase configuration is missing or empty. Please paste your config.");
-        // Fallback state if configuration is missing
+        console.error("Firebase configuration is missing or invalid.");
         window.isFirebaseReady = false;
         window.auth = null;
         window.db = null;
         window.currentUserId = null;
-        document.getElementById('auth-status-btn').textContent = 'CONFIG MISSING';
+        document.getElementById('auth-status-btn').textContent = 'CONFIG ERROR';
         document.getElementById('user-id-display').textContent = 'User ID: N/A';
     }
     
@@ -506,12 +512,17 @@
             // onAuthStateChanged handles the view change to 'buy'
         } catch (error) {
             console.error("Registration failed:", error);
-            let errorMessage = "Registration failed. Please check your email/password.";
+            let errorMessage = "Registration failed. Please check your email and password.";
+            
+            // Improved Error Mapping
             if (error.code === 'auth/email-already-in-use') {
-                errorMessage = "This email is already registered. Try logging in.";
+                errorMessage = "Email is already registered. Please log in.";
             } else if (error.code === 'auth/weak-password') {
                  errorMessage = "Password should be at least 6 characters.";
+            } else if (error.code && error.code.startsWith('auth/')) {
+                 errorMessage = `Registration failed: ${error.code.split('/')[1].replace(/-/g, ' ')}. Please check console.`;
             }
+
             window.showToast(errorMessage, false, 'auth-message');
         }
     }
@@ -535,7 +546,16 @@
             // onAuthStateChanged handles the view change to 'buy'
         } catch (error) {
             console.error("Login failed:", error);
-            window.showToast("Login failed. Check your email and password.", false, 'auth-message');
+            let errorMessage = "Login failed. Check your email and password.";
+            
+            // Improved Error Mapping
+            if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                 errorMessage = "Invalid login credentials.";
+            } else if (error.code && error.code.startsWith('auth/')) {
+                 errorMessage = `Login failed: ${error.code.split('/')[1].replace(/-/g, ' ')}. Please check console.`;
+            }
+
+            window.showToast(errorMessage, false, 'auth-message');
         }
     }
 
